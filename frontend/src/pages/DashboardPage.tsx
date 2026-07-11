@@ -45,7 +45,6 @@ export default function DashboardPage() {
       // silent
     }
     setLoading(false);
-    setRefreshing(false);
   };
 
   useEffect(() => {
@@ -330,12 +329,6 @@ function SimrsCard({ title, value, suffix, color }: { title: string; value?: num
 }
 
 function StatCard({ title, value, color }: { title: string; value: string | number; color: string }) {
-  const colors: Record<string, string> = {
-    blue: 'rgba(59,130,246,0.1)',
-    red: 'rgba(239,68,68,0.1)',
-    amber: 'rgba(245,158,11,0.1)',
-    green: 'rgba(34,197,94,0.1)',
-  };
   const textColors: Record<string, string> = {
     blue: '#3b82f6',
     red: '#ef4444',

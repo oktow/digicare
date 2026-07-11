@@ -29,8 +29,6 @@ export default function UserList() {
     } catch { alert('Gagal menghapus user'); }
   };
 
-  const inputStyle = { background: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' } as const;
-
   if (loading) return <div className="text-center py-8" style={{ color: 'var(--text-secondary)' }}>Memuat...</div>;
 
   return (

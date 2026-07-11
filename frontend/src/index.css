@@ -33,6 +33,21 @@ body {
   --active-text: #2563eb;
 }
 
+[data-theme="green"] {
+  --bg-primary: #f0fdf4;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4a7c6f;
+  --border-color: #a7f3d0;
+  --sidebar-bg: #005b4f;
+  --sidebar-border: #007a6b;
+  --hover-bg: #007a6b;
+  --active-bg: #00b894;
+  --active-text: #ffffff;
+  --nav-text: #a7f3d0;
+}
+
 [data-theme="blue"] {
   --bg-primary: #f0f5ff;
   --bg-secondary: #ffffff;

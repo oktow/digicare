@@ -1,4 +1,4 @@
-import { useState, ReactNode, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, type ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../api/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
@@ -35,6 +35,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   };
 
   const isBlue = theme === 'blue';
+  const isGreen = theme === 'green';
   const modules = user?.modules ?? [];
   const initials = getInitials(user?.full_name ?? '');
 
@@ -55,7 +56,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="flex items-center p-3 border-b gap-2" style={{ borderColor: 'var(--sidebar-border)' }}>
           {!collapsed && (
             <div className="flex-1 min-w-0">
-              <h1 className="text-lg font-bold truncate" style={{ color: isBlue ? '#93c5fd' : '#2563eb' }}>DIGI-CARE RS</h1>
+              <h1 className="text-lg font-bold truncate" style={{ color: isBlue ? '#93c5fd' : isGreen ? '#6ee7b7' : '#2563eb' }}>DIGI-CARE RS</h1>
             </div>
           )}
           <button
@@ -114,7 +115,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
         <div className="p-2 border-t space-y-1.5" style={{ borderColor: 'var(--sidebar-border)' }}>
           <div className={collapsed ? 'flex flex-col items-center gap-1' : 'flex gap-1.5'}>
-            {(['light', 'dark', 'blue'] as const).map((t) => (
+            {(['light', 'dark', 'blue', 'green'] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setTheme(t)}
@@ -124,9 +125,9 @@ export default function Layout({ children }: { children: ReactNode }) {
                   color: theme === t ? 'var(--active-text)' : 'var(--nav-text)',
                   borderColor: theme === t ? 'var(--active-bg)' : 'var(--border-color)',
                 }}
-                title={collapsed ? (t === 'light' ? 'Terang' : t === 'dark' ? 'Gelap' : 'Biru') : undefined}
+                title={collapsed ? (t === 'light' ? 'Terang' : t === 'dark' ? 'Gelap' : t === 'blue' ? 'Biru' : 'Hijau') : undefined}
               >
-                {t === 'light' ? '☀️' : t === 'dark' ? '🌙' : '💙'}
+                {t === 'light' ? '☀️' : t === 'dark' ? '🌙' : t === 'blue' ? '💙' : '💚'}
               </button>
             ))}
           </div>

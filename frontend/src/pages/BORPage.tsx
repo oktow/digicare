@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { borAPI } from '../api/client';
 import type { BOR } from '../types';
 import { useAuth } from '../api/AuthContext';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 export default function BORPage() {
   const [data, setData] = useState<BOR[]>([]);
