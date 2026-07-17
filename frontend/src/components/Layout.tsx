@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../api/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import ChangePasswordModal from './ChangePasswordModal';
+import IndikatorModal from './IndikatorModal';
+import KomplainInsidenModal from './KomplainInsidenModal';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: '📊', module: 'dashboard' },
@@ -19,7 +21,10 @@ export default function Layout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const [showIndikator, setShowIndikator] = useState(false);
+  const [showKI, setShowKI] = useState(false);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem('sidebar_collapsed') === 'true');
+  const [showThemeMenu, setShowThemeMenu] = useState(false);
 
   const toggleCollapse = useCallback(() => {
     setCollapsed((prev) => {
@@ -114,26 +119,50 @@ export default function Layout({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="p-2 border-t space-y-1.5" style={{ borderColor: 'var(--sidebar-border)' }}>
-          <div className={collapsed ? 'flex flex-col items-center gap-1' : 'flex gap-1.5'}>
-            {(['light', 'dark', 'blue', 'green'] as const).map((t) => (
-              <button
-                key={t}
-                onClick={() => setTheme(t)}
-                className={`rounded text-xs font-medium transition-all border ${collapsed ? 'p-1.5 w-8' : 'flex-1 px-2 py-1.5'}`}
-                style={{
-                  background: theme === t ? 'var(--active-bg)' : 'transparent',
-                  color: theme === t ? 'var(--active-text)' : 'var(--nav-text)',
-                  borderColor: theme === t ? 'var(--active-bg)' : 'var(--border-color)',
-                }}
-                title={collapsed ? (t === 'light' ? 'Terang' : t === 'dark' ? 'Gelap' : t === 'blue' ? 'Biru' : 'Hijau') : undefined}
+          <div className="relative">
+            <button
+              onClick={() => setShowThemeMenu(!showThemeMenu)}
+              className={`w-full rounded-lg text-sm font-medium transition-all border flex items-center ${collapsed ? 'justify-center p-1.5 w-8 mx-auto' : 'px-3 py-2 gap-2'}`}
+              style={{
+                background: 'transparent',
+                color: 'var(--nav-text)',
+                borderColor: 'var(--border-color)',
+              }}
+              title={collapsed ? 'Tema' : undefined}
+            >
+              <span>🎨</span>
+              {!collapsed && <span className="flex-1 text-left">Tema</span>}
+              {!collapsed && <span>{showThemeMenu ? '▲' : '▼'}</span>}
+            </button>
+            {showThemeMenu && (
+              <div
+                className={`${collapsed ? 'absolute left-full top-0 ml-2 z-50' : 'absolute bottom-full left-0 right-0 mb-1 z-50'} rounded-lg border shadow-lg overflow-hidden`}
+                style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
               >
-                {t === 'light' ? '☀️' : t === 'dark' ? '🌙' : t === 'blue' ? '💙' : '💚'}
-              </button>
-            ))}
+                {(['light', 'dark', 'blue', 'green'] as const).map((t) => (
+                  <button
+                    key={t}
+                    onClick={() => { setTheme(t); setShowThemeMenu(false); }}
+                    className="w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors"
+                    style={{
+                      background: theme === t ? 'var(--active-bg)' : 'transparent',
+                      color: theme === t ? 'var(--active-text)' : 'var(--text-primary)',
+                    }}
+                    onMouseEnter={(e) => { if (theme !== t) e.currentTarget.style.background = 'var(--hover-bg)'; }}
+                    onMouseLeave={(e) => { if (theme !== t) e.currentTarget.style.background = 'transparent'; }}
+                  >
+                    <span>{t === 'light' ? '☀️' : t === 'dark' ? '🌙' : t === 'blue' ? '💙' : '💚'}</span>
+                    <span>{t === 'light' ? 'Terang' : t === 'dark' ? 'Gelap' : t === 'blue' ? 'Biru' : 'Hijau'}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {collapsed ? (
             <div className="flex flex-col items-center gap-1 pt-1" style={{ color: 'var(--nav-text)' }}>
+              <button onClick={() => setShowIndikator(true)} className="text-sm hover:opacity-80" title="Indikator RS">📊</button>
+              <button onClick={() => setShowKI(true)} className="text-sm hover:opacity-80" title="Komplain & Insiden">📋</button>
               <button onClick={() => window.dispatchEvent(new CustomEvent('dashboard-refresh'))} className="text-sm hover:opacity-80" title="Refresh">🔄</button>
               <div
                 className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
@@ -154,6 +183,12 @@ export default function Layout({ children }: { children: ReactNode }) {
               </button>
               <button onClick={() => setShowChangePassword(true)} className="w-full text-left text-sm hover:opacity-80" style={{ color: 'var(--nav-text)' }}>
                 🔑 Ubah Password
+              </button>
+              <button onClick={() => setShowIndikator(true)} className="w-full text-left text-sm hover:opacity-80" style={{ color: 'var(--nav-text)' }}>
+                📊 Indikator RS
+              </button>
+              <button onClick={() => setShowKI(true)} className="w-full text-left text-sm hover:opacity-80" style={{ color: 'var(--nav-text)' }}>
+                📋 Komplain & Insiden
               </button>
             </>
           )}
@@ -176,6 +211,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       </main>
 
       {showChangePassword && <ChangePasswordModal onClose={() => setShowChangePassword(false)} />}
+      {showIndikator && <IndikatorModal onClose={() => setShowIndikator(false)} />}
+      {showKI && <KomplainInsidenModal onClose={() => setShowKI(false)} />}
     </div>
   );
 }

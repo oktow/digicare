@@ -180,6 +180,17 @@ class DashboardController extends Controller
             'bto' => $simrs['bto'] ?? null,
             'ndr' => $simrs['ndr'] ?? null,
             'gdr' => $simrs['gdr'] ?? null,
+            'awal' => $simrs['awal'] ?? null,
+            'masuk' => $simrs['masuk'] ?? null,
+            'kurang_48_jam' => $simrs['kurang_48_jam'] ?? null,
+            'lebih_48_jam' => $simrs['lebih_48_jam'] ?? null,
+            'jml_keluar_hidup' => $simrs['jml_keluar_hidup'] ?? null,
+            'jml_klr' => $simrs['jml_klr'] ?? null,
+            'lama_dirawat' => $simrs['lama_dirawat'] ?? null,
+            'hari_perawatan' => $simrs['hari_perawatan'] ?? null,
+            'pasien_dirawat' => $simrs['pasien_dirawat'] ?? null,
+            'ttidur' => $simrs['ttidur'] ?? null,
+            'jml_hari' => $simrs['jml_hari'] ?? null,
         ]);
     }
 
@@ -234,6 +245,17 @@ class DashboardController extends Controller
                     'bto' => isset($raw['BTO']) ? (float) $raw['BTO'] : null,
                     'ndr' => isset($raw['NDR']) ? (float) $raw['NDR'] : null,
                     'gdr' => isset($raw['GDR']) ? (float) $raw['GDR'] : null,
+                    'awal' => isset($raw['AWAL']) ? (float) $raw['AWAL'] : null,
+                    'masuk' => isset($raw['MASUK']) ? (float) $raw['MASUK'] : null,
+                    'kurang_48_jam' => isset($raw['KURANG48JAM']) ? (float) $raw['KURANG48JAM'] : null,
+                    'lebih_48_jam' => isset($raw['LEBIH48JAM']) ? (float) $raw['LEBIH48JAM'] : null,
+                    'jml_keluar_hidup' => isset($raw['JMLKELUARHIDUP']) ? (float) $raw['JMLKELUARHIDUP'] : null,
+                    'jml_klr' => isset($raw['JMLKLR']) ? (float) $raw['JMLKLR'] : null,
+                    'lama_dirawat' => isset($raw['LAMADIRAWAT']) ? (float) $raw['LAMADIRAWAT'] : null,
+                    'hari_perawatan' => isset($raw['HARIPERAWATAN']) ? (float) $raw['HARIPERAWATAN'] : null,
+                    'pasien_dirawat' => isset($raw['PASIENDIRAWAT']) ? (float) $raw['PASIENDIRAWAT'] : null,
+                    'ttidur' => isset($raw['TTIDUR']) ? (float) $raw['TTIDUR'] : null,
+                    'jml_hari' => isset($raw['JMLHARI']) ? (float) $raw['JMLHARI'] : null,
                 ];
             } catch (\Exception) {
                 return [];

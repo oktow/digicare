@@ -73,3 +73,7 @@ export const waktuTungguAPI = {
 export const dashboardAPI = {
   get: (params?: any) => api.get('/dashboard', { params }),
 };
+
+export const indikatorAPI = {
+  list: () => api.get('/indikator/list'),
+};

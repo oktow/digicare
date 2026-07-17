@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BORController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IndikatorController;
 use App\Http\Controllers\InsidenController;
 use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,9 @@ Route::middleware(['jwt.auth'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    // Indikator list
+    Route::get('/indikator/list', [IndikatorController::class, 'list']);
 
     // Komplain
     Route::get('/komplain', [KomplainController::class, 'index']);

@@ -115,4 +115,23 @@ export interface DashboardStats {
   bto?: number;
   ndr?: number;
   gdr?: number;
+  awal?: number;
+  masuk?: number;
+  kurang_48_jam?: number;
+  lebih_48_jam?: number;
+  jml_keluar_hidup?: number;
+  jml_klr?: number;
+  lama_dirawat?: number;
+  hari_perawatan?: number;
+  pasien_dirawat?: number;
+  ttidur?: number;
+  jml_hari?: number;
+}
+
+export interface IndikatorItem {
+  id: string;
+  label: string;
+  suffix: string;
+  source: string;
+  group: string;
 }

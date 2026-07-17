@@ -25,30 +25,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}>
-      <div className="p-8 rounded-2xl shadow-lg w-full max-w-md" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
-        <h1 className="text-3xl font-bold text-center mb-2" style={{ color: '#2563eb' }}>DIGI-CARE</h1>
-        <p className="text-center text-sm mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>Dashboard Indikator & Grafik<br />Insiden Complain And Realtime Evaluation</p>
+    <div className="min-h-screen flex items-center justify-center relative" style={{ backgroundImage: 'url(/BG.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="p-8 rounded-2xl shadow-lg w-full max-w-md z-10" style={{ background: 'rgba(0,0,0,0.7)', borderColor: 'rgba(255,255,255,0.1)' }}>
+        <h1 className="text-3xl font-bold text-center mb-2" style={{ color: '#93c5fd' }}>DIGI-CARE</h1>
+        <p className="text-center text-sm mb-8 leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>Dashboard Indikator & Grafik<br />Insiden Complain And Realtime Evaluation</p>
         {error && (
-          <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4 text-sm">{error}</div>
+          <div className="bg-red-500/20 text-red-300 p-3 rounded-lg mb-4 text-sm border border-red-500/30">{error}</div>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>Username</label>
+            <label className="block text-sm font-medium mb-1" style={{ color: 'rgba(255,255,255,0.7)' }}>Username</label>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg outline-none" style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} required />
+              className="w-full px-3 py-2 border rounded-lg outline-none" style={{ background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }} required />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>Password</label>
+            <label className="block text-sm font-medium mb-1" style={{ color: 'rgba(255,255,255,0.7)' }}>Password</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg outline-none" style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-color)', color: 'var(--text-primary)' }} required />
+              className="w-full px-3 py-2 border rounded-lg outline-none" style={{ background: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.2)', color: '#fff' }} required />
           </div>
           <button type="submit" disabled={loading}
             className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50">
             {loading ? 'Memproses...' : 'Masuk'}
           </button>
         </form>
-        <div className="mt-6 text-center text-xs" style={{ color: 'var(--text-secondary)' }}>
+        <div className="mt-6 text-center text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
           <p>Demo: admin / admin123</p>
           <p>petugas / petugas123</p>
           <p>viewer / viewer123</p>
